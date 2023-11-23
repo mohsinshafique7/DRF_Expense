@@ -1,0 +1,14 @@
+[flake8]
+ignore = C101,D403,F408,F405,I201,W503,W504
+exclude =
+    .git,
+    venv
+filename = *.py
+accept-encodings = single
+inline-qoutes = single
+max-complexity = 12
+max-linenumber = 500
+max-line-length = 119
+multiple-qoutes = double
+per-file-ignores =
+    core/DJEcommerce/settings/templates/settings.dev.py:F821

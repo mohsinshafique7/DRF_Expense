@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  app:
+    build: .
+    environment:
+      CORESETTING_DATABASES: '{"default":{"HOST":"db"}}'
+      CORESETTING_LOCAL_SETTINGS_PATH: 'local/settings.prod.py'
+      # CORESETTING_CHANNEL_LAYERS: '{"default":{"CONFIG":{"hosts":[["redis", 6379]]}}}'
+    # command: make test-fail-fast
+    depends_on:
+      - db
+      - redis

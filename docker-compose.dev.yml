@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+
+  db:
+    restart: 'no'
+    ports:
+      - 127.0.0.1:5432:5432
+
+  redis:
+    restart: 'no'
+    ports:
+      - 127.0.0.1:6379:6379
+
+  # core:
+  #   restart: 'no'
+
+  # core-reverse-proxy:
+  #   restart: 'no'
+
+# TODO(dmu) LOW: Do we need `volumes` defined in this file?
+# volumes:
+#   postgresql-data:
+#     driver: local
+#   redis-data:
+#     driver: local

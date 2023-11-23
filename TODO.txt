@@ -1,0 +1,43 @@
+make update not working properly
+send Email not working
+move algoritham to settings from authentication.views
+page number pagination(default) for some , offset for some
+implement video 13
+# In core/authentication/models.py
+
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.db import models
+
+class UserManager(BaseUserManager):
+    def create_user(self, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError('The Email field must be set')
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        return self.create_user(email, password, **extra_fields)
+
+class UserModel(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(unique=True)
+    # add other fields as needed
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+
+    objects = UserManager()
+
+    USERNAME_FIELD = 'email'
+
+    def __str__(self):
+        return self.email
+
+SELECT "authentication_user"."id", "authentication_user"."password", "authentication_user"."last_login",
+ "authentication_user"."is_superuser", "authentication_user"."username", "authentication_user"."email",
+  "authentication_user"."is_verified", "authentication_user"."is_active", "authentication_user"."is_stuff",
+   "authentication_user"."created_at", "authentication_user"."updated_at" FROM "authentication_user"
+    WHERE "authentication_user"."email" = 'user@examples.com' LIMIT 21
