@@ -1,8 +1,7 @@
 make update not working properly
-send Email not working
+Confirm email should redirect to frontend page
 move algoritham to settings from authentication.views
 page number pagination(default) for some , offset for some
-implement video 13
 # In core/authentication/models.py
 
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin

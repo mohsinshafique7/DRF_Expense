@@ -22,6 +22,7 @@ drf-yasg = "^1.21.7"
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.5.0"
 colorlog = "^6.7.0"
+requests = "^2.31.0"
 
 [tool.isort]
 multi_line_output = 5

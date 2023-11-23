@@ -49,7 +49,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.project.wsgi.application'
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -103,12 +102,13 @@ DATABASES = {
         'CONN_MAX_AGE': 0,
     }
 }
-
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'stmp.gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp-mail.outlook.com'  # Set your SMTP server address
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'mohsin.shafique1991@gmail.com'
-EMAIL_HOST_PASSWORD = 'Rabiya25267292'
+EMAIL_USE_TLS = True # Use TLS (True/False depending on your SMTP server)
+DEFAULT_FROM_EMAIL = 'mohsin.mirza1991@hotmail.com'  # Your email address
+EMAIL_HOST_USER = 'mohsin.mirza1991@hotmail.com'  # Your email address
+
 
 AUTH_USER_MODEL = 'authentication.User'
 
