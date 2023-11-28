@@ -1,6 +1,6 @@
 make update not working properly
 Confirm email should redirect to frontend page
-move algoritham to settings from authentication.views
+create serializer for ExpenseSummaryStats
 page number pagination(default) for some , offset for some
 # In core/authentication/models.py
 

@@ -1,4 +1,3 @@
-
 from datetime import timedelta
 
 SIMPLE_JWT = {
@@ -7,18 +6,23 @@ SIMPLE_JWT = {
     'SIGNING_KEY': '4fcb9436a426e5d8e215220cfd6cfdbb8c3066111b6eae62cdee57867fadbbd4',
     'UPDATE_LAST_LOGIN': True,
     'USER_ID_FIELD': 'email',
+    'ALGORITHM': 'HS256'
 }
 
 REST_FRAMEWORK = {
-    'NON_FIELD_ERRORS_KEY':'error',
-    'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication',),
+    'NON_FIELD_ERRORS_KEY':
+        'error',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        # other authentication classes
+    ),
     'DEFAULT_PARSER_CLASSES': ('rest_framework.parsers.JSONParser',),
-    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 100,
-     'DEFAULT_RENDERER_CLASSES': [
+    'TEST_REQUEST_DEFAULT_FORMAT':
+        'json',
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    # 'PAGE_SIZE': 100,
+    'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ]
 }
-

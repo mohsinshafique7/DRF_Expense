@@ -1,15 +1,3 @@
-# .PHONY: build
-# build: build-core build-reverse-proxy;
-
-# .PHONY: build-core
-# build-core:
-# 	docker build . -t core:current
-
-# .PHONY: build-reverse-proxy
-# build-reverse-proxy:
-# 	docker build . -f Dockerfile-reverse-proxy -t core-reverse-proxy:current
-
-
 .PHONY: install
 install:
 	poetry install
@@ -25,10 +13,6 @@ migrate:
 .PHONY: superuser
 superuser:
 	 poetry run python -m core.manage createsuperuser
-
-# admin
-# admin@admin.com
-# admin123.*
 
 .PHONY: lint
 lint:
@@ -55,23 +39,6 @@ up-dependencies-only:
 .PHONY: run-server
 run-server:
 	poetry run python -m core.manage runserver 127.0.0.1:8000
-
-# .PHONY: dot-env
-# dot-env:
-# 	grep -q -o CORESETTING_SECRET_KEY .env 2> /dev/null || echo "CORESETTING_SECRET_KEY=$$(xxd -c 48 -l 48 -p /dev/urandom)" >> .env
-
-# .PHONY: run-dockerized-build
-# run-dockerized-build: build dot-env
-# 	docker compose -f docker-compose.yml -f docker-compose.build.yml up --no-build --force-recreate
-
-# .PHONY: run-dockerized-from-registry
-# run-dockerized-from-registry: dot-env
-# 	echo '(username=github username; password=github personal access token (not github password)'
-# 	docker login ghcr.io
-# 	docker compose pull
-# 	docker compose up --no-build --force-recreate
-
-
 
 .PHONY: test
 test:

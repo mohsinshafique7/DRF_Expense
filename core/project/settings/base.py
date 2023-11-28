@@ -1,6 +1,10 @@
+from typing import List
+
 SECRET_KEY = NotImplemented
 DEBUG = False
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS: List[str] = []
+
+CORS_ALLOW_ALL_ORIGINS = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -11,18 +15,20 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_simplejwt.token_blacklist',
     'drf_yasg',
+    'corsheaders',
     # Apps
     'core.authentication.apps.AuthenticationConfig',
     'core.expenses.apps.ExpensesConfig',
-    'core.income.apps.IncomeConfig'
-
-
+    'core.income.apps.IncomeConfig',
+    'core.social_auth.apps.SocialAuthConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -105,20 +111,23 @@ DATABASES = {
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp-mail.outlook.com'  # Set your SMTP server address
 EMAIL_PORT = 587
-EMAIL_USE_TLS = True # Use TLS (True/False depending on your SMTP server)
+EMAIL_USE_TLS = True  # Use TLS (True/False depending on your SMTP server)
 DEFAULT_FROM_EMAIL = 'mohsin.mirza1991@hotmail.com'  # Your email address
 EMAIL_HOST_USER = 'mohsin.mirza1991@hotmail.com'  # Your email address
 
-
 AUTH_USER_MODEL = 'authentication.User'
 
-SWAGGER_SETTINGS={
-    'SECURITY_DEFINATIONS':{
-        'Bearer':{
-            'type':'apiKey',
-            'name':'Authorization',
-            'in':'header'
-        }
-    }
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+        },
+    },
+    'LOGIN_URL': 'core.authentication:login',
+    'LOGOUT_URL': 'core.authentication:logout',
+    'USE_SESSION_AUTH': False,
+    'PERSIST_AUTH': True,
 }
-
+# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyNDA0NzU4LCJpYXQiOjE3MDA4Njg3NTgsImp0aSI6IjFlYjdlODE2NzA5ZDRkNGFiMGVlYzVhZWJlNmMwZjhkIiwidXNlcl9pZCI6Im1vaHNpbi5zaGFmaXF1ZTE5OTFAZ21haWwuY29tIn0.2oFUWCNjBhgAvObGoU-g1wj08vg7yjqw-mUiDO7TUeg

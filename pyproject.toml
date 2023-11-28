@@ -17,6 +17,7 @@ pyyaml = "^6.0.1"
 django-cors-headers = "^4.3.1"
 djangorestframework-simplejwt = "^5.3.0"
 drf-yasg = "^1.21.7"
+twitter = "^1.19.6"
 
 
 [tool.poetry.group.dev.dependencies]

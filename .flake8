@@ -10,5 +10,6 @@ max-complexity = 12
 max-linenumber = 500
 max-line-length = 119
 multiple-qoutes = double
-per-file-ignores =
-    core/DJEcommerce/settings/templates/settings.dev.py:F821
+; per-file-ignores =
+;     core/DJEcommerce/settings/templates/settings.dev.py:F821
+;     core/authentication/migrations/0001_initial.py
